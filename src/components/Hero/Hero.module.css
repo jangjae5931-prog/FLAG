@@ -1,0 +1,52 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: left;
+}
+
+.name {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+.role {
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.intro {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.aboutContainer {
+  max-width: 700px;
+  border-left: 2px solid var(--border-color);
+  padding-left: 1.5rem;
+}
+
+.about {
+  font-size: 1.1rem;
+  color: var(--secondary-text);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .name {
+    font-size: 2.5rem;
+  }
+  .role {
+    font-size: 1.2rem;
+  }
+  .hero {
+    min-height: 60vh;
+    padding-top: 100px;
+  }
+}

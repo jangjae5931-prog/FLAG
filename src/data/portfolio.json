@@ -1,0 +1,39 @@
+{
+  "profile": {
+    "name": "홍길동",
+    "role": "Frontend Developer",
+    "intro": "안녕하세요, 사용자 중심의 가치를 만드는 개발자 홍길동입니다.",
+    "about": "저는 깔끔한 코드와 직관적인 UI/UX를 지향합니다. 새로운 기술을 배우는 것을 즐기며 문제 해결에 열정적입니다.",
+    "email": "example@email.com",
+    "github": "https://github.com",
+    "linkedin": "https://linkedin.com",
+    "blog": "https://blog.com"
+  },
+  "skills": [
+    "HTML5",
+    "CSS3",
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js"
+  ],
+  "projects": [
+    {
+      "title": "나의 포트폴리오 사이트",
+      "description": "Vite와 React를 사용하여 제작한 미니멀한 포트폴리오 사이트입니다.",
+      "tags": ["React", "TypeScript", "Vite"],
+      "github": "https://github.com",
+      "demo": "https://demo.com",
+      "image": "https://via.placeholder.com/600x400"
+    },
+    {
+      "title": "멋진 프로젝트 2",
+      "description": "다양한 기능을 제공하는 웹 어플리케이션 프로젝트입니다.",
+      "tags": ["Next.js", "Firebase", "Tailwind"],
+      "github": "https://github.com",
+      "demo": "https://demo.com",
+      "image": "https://via.placeholder.com/600x400"
+    }
+  ]
+}

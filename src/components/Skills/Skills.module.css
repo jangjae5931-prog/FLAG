@@ -1,0 +1,31 @@
+.skills {
+  border-top: 1px solid var(--border-color);
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.skillTag {
+  background-color: var(--card-bg);
+  padding: 0.5rem 1.2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.skillTag:hover {
+  border-color: var(--accent-color);
+  background-color: #fff;
+}

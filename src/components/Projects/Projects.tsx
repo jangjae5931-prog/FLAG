@@ -4,6 +4,17 @@ import portfolioData from '../../data/portfolio.json';
 const Projects = () => {
   const { projects } = portfolioData;
 
+  // 유튜브 URL에서 영상 ID를 추출하여 썸네일 주소를 반환하는 함수
+  const getYoutubeThumbnail = (url: string) => {
+    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    const match = url.match(regExp);
+    const videoId = (match && match[7].length === 11) ? match[7] : null;
+    
+    return videoId 
+      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      : 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
+  };
+
   return (
     <section id="projects" className={styles.projects}>
       <h2 className={styles.title}>Projects</h2>
@@ -11,14 +22,10 @@ const Projects = () => {
         {projects.map((project, index) => (
           <a key={index} href={project.demo} target="_blank" rel="noopener noreferrer" className={styles.projectCard}>
             <div className={styles.imageWrapper}>
-              {/* 이미지 로딩 실패 시 검은 배경에 아이콘만 나오도록 처리 */}
               <img 
-                src={project.image} 
+                src={getYoutubeThumbnail(project.demo)} 
                 alt={project.title} 
                 className={styles.image} 
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                }}
               />
               <div className={styles.overlay}>
                 <div className={styles.playCircle}>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styles from './Projects.module.css';
 import portfolioData from '../../data/portfolio.json';
 
@@ -12,6 +12,7 @@ interface Project {
 const Projects = () => {
   const { projects } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const getYoutubeId = (url: string) => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -19,12 +20,9 @@ const Projects = () => {
     return (match && match[7].length === 11) ? match[7] : null;
   };
 
-  // 유튜브 썸네일을 가져오되, 고화질이 없으면 기본 화질로 대체하는 로직
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
     if (!videoId) return 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
-    
-    // hqdefault는 거의 모든 영상에 존재하므로 가장 안전합니다.
     return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
   };
 
@@ -38,10 +36,25 @@ const Projects = () => {
     document.body.style.overflow = 'auto';
   };
 
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth * 0.8 : scrollLeft + clientWidth * 0.8;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="projects" className={styles.projects}>
-      <h2 className={styles.title}>Projects</h2>
-      <div className={styles.projectGrid}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>Projects</h2>
+        <div className={styles.navButtons}>
+          <button className={styles.navButton} onClick={() => scroll('left')}>←</button>
+          <button className={styles.navButton} onClick={() => scroll('right')}>→</button>
+        </div>
+      </div>
+
+      <div className={styles.sliderContainer} ref={scrollRef}>
         {projects.map((project, index) => (
           <div key={index} className={styles.projectCard} onClick={() => openModal(project)}>
             <div className={styles.imageWrapper}>
@@ -50,7 +63,6 @@ const Projects = () => {
                 alt={project.title} 
                 className={styles.image}
                 onError={(e) => {
-                  // 만약 hqdefault마저 실패하면 기본 썸네일로 교체
                   const videoId = getYoutubeId(project.demo);
                   e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
                 }}
@@ -59,12 +71,10 @@ const Projects = () => {
                 <div className={styles.playCircle}>
                   <span className={styles.playIcon}>▶</span>
                 </div>
-                <span className={styles.playText}>자세히 보기</span>
               </div>
             </div>
             <div className={styles.content}>
               <h3 className={styles.projectTitle}>{project.title}</h3>
-              <p className={styles.description}>{project.description}</p>
               <div className={styles.tags}>
                 {project.tags.map((tag, tagIndex) => (
                   <span key={tagIndex} className={styles.tag}>{tag}</span>
@@ -75,6 +85,7 @@ const Projects = () => {
         ))}
       </div>
 
+      {/* 모달 상세 페이지 */}
       {selectedProject && (
         <div className={styles.modalBackdrop} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>

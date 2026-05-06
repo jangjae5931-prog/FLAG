@@ -1,5 +1,6 @@
 .skills {
   border-top: 1px solid var(--border-color);
+  padding: 80px 20px;
 }
 
 .title {
@@ -17,19 +18,21 @@
 }
 
 .skillTag {
-  background-color: var(--card-bg);
-  padding: 0.6rem 1.4rem;
+  background-color: #1a1a1a; /* 배경색을 명확하게 지정 */
+  padding: 0.8rem 1.6rem;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
-  border: 1px solid var(--border-color);
-  color: var(--secondary-text);
+  border: 1px solid #333; /* 테두리를 조금 더 밝게 */
+  color: #ccc;
   transition: all 0.3s ease;
+  cursor: default;
 }
 
 .skillTag:hover {
   border-color: var(--accent-color);
-  color: white;
-  background-color: rgba(255, 62, 0, 0.1);
-  transform: translateY(-3px);
+  color: #fff;
+  background-color: var(--accent-color); /* 호버 시 아예 포인트 컬러로 채우기 */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 62, 0, 0.3);
 }

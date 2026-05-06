@@ -27,7 +27,7 @@
       "tags": ["Media Art", "Motion Graphics"],
       "github": "https://www.youtube.com/@TAKE17-o1u",
       "demo": "https://www.youtube.com/watch?v=FqS7MInyv14",
-      "image": "https://img.youtube.com/vi/FqS7MInyv14/maxresdefault.jpg"
+      "image": "https://img.youtube.com/vi/FqS7MInyv14/hqdefault.jpg"
     },
     {
       "title": "대구박물관 꽃 미디어아트",
@@ -35,7 +35,7 @@
       "tags": ["Media Facade", "3D"],
       "github": "https://www.youtube.com/@TAKE17-o1u",
       "demo": "https://www.youtube.com/watch?v=1Fv0B_HnI2Y",
-      "image": "https://img.youtube.com/vi/1Fv0B_HnI2Y/maxresdefault.jpg"
+      "image": "https://img.youtube.com/vi/1Fv0B_HnI2Y/hqdefault.jpg"
     },
     {
       "title": "Kidmilli - Summer 타이포그래피 카피",
@@ -43,15 +43,15 @@
       "tags": ["Typography", "After Effects"],
       "github": "https://www.youtube.com/@TAKE17-o1u",
       "demo": "https://www.youtube.com/watch?v=7h-6v4D8YpM",
-      "image": "https://img.youtube.com/vi/7h-6v4D8YpM/maxresdefault.jpg"
+      "image": "https://img.youtube.com/vi/7h-6v4D8YpM/hqdefault.jpg"
     },
     {
-      "title": "AI 프롬프트 활용 모션그래픽",
-      "description": "AI 이미지를 생성하고 레이어를 분리하여 제작한 트렌디한 영상입니다.",
+      "title": "Ai 프롬프트 활용 모션그래픽",
+      "description": "Ai 이미지를 생성하고 레이어를 분리하여 제작한 트렌디한 영상입니다.",
       "tags": ["AI", "Motion Graphics"],
       "github": "https://www.youtube.com/@TAKE17-o1u",
-      "demo": "https://www.youtube.com/watch?v=T_8Q9Q9Q9Q9",
-      "image": "https://img.youtube.com/vi/F2w8zG9g6vE/maxresdefault.jpg"
+      "demo": "https://www.youtube.com/watch?v=F2w8zG9g6vE",
+      "image": "https://img.youtube.com/vi/F2w8zG9g6vE/hqdefault.jpg"
     }
   ]
 }

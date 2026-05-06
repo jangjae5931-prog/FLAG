@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import styles from './Projects.module.css';
 import portfolioData from '../../data/portfolio.json';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Project {
   title: string;
@@ -12,7 +13,6 @@ interface Project {
 const Projects = () => {
   const { projects } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const getYoutubeId = (url: string) => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -22,98 +22,80 @@ const Projects = () => {
 
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
-    if (!videoId) return 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
-    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  };
-
-  const openModal = (project: Project) => {
-    setSelectedProject(project);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setSelectedProject(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth * 0.8 : scrollLeft + clientWidth * 0.8;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-    }
+    return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
   };
 
   return (
     <section id="projects" className={styles.projects}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Projects</h2>
-        <div className={styles.navButtons}>
-          <button className={styles.navButton} onClick={() => scroll('left')}>←</button>
-          <button className={styles.navButton} onClick={() => scroll('right')}>→</button>
-        </div>
-      </div>
-
-      <div className={styles.sliderContainer} ref={scrollRef}>
+      <div className={styles.projectsContainer}>
         {projects.map((project, index) => (
-          <div key={index} className={styles.projectCard} onClick={() => openModal(project)}>
-            <div className={styles.imageWrapper}>
-              <img 
-                src={getYoutubeThumbnail(project.demo)} 
-                alt={project.title} 
-                className={styles.image}
-                onError={(e) => {
-                  const videoId = getYoutubeId(project.demo);
-                  e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
-                }}
-              />
-              <div className={styles.overlay}>
-                <div className={styles.playCircle}>
-                  <span className={styles.playIcon}>▶</span>
+          <motion.div 
+            key={index} 
+            className={styles.projectSection}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <div className={styles.projectContent}>
+              <div className={styles.mediaSide}>
+                <div className={styles.imageWrapper} onClick={() => setSelectedProject(project)}>
+                  <img src={getYoutubeThumbnail(project.demo)} alt={project.title} className={styles.image} />
+                  <div className={styles.overlay}>
+                    <span className={styles.playIcon}>VIEW FILM</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.content}>
-              <h3 className={styles.projectTitle}>{project.title}</h3>
-              <div className={styles.tags}>
-                {project.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className={styles.tag}>{tag}</span>
-                ))}
+              <div className={styles.infoSide}>
+                <span className={styles.projectNumber}>0{index + 1}</span>
+                <h3 className={styles.projectTitle}>{project.title}</h3>
+                <div className={styles.tags}>
+                  {project.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
+                </div>
+                <button className={styles.detailsButton} onClick={() => setSelectedProject(project)}>
+                  VIEW DETAILS ⟶
+                </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
-      {/* 모달 상세 페이지 */}
-      {selectedProject && (
-        <div className={styles.modalBackdrop} onClick={closeModal}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <button className={styles.closeButton} onClick={closeModal}>×</button>
-            <div className={styles.modalBody}>
-              <div className={styles.videoContainer}>
-                <iframe 
-                  src={`https://www.youtube.com/embed/${getYoutubeId(selectedProject.demo)}?autoplay=1`}
-                  frameBorder="0"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                  title={selectedProject.title}
-                ></iframe>
-              </div>
-              <div className={styles.projectInfo}>
-                <h2 className={styles.modalTitle}>{selectedProject.title}</h2>
-                <div className={styles.modalTags}>
-                  {selectedProject.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div 
+            className={styles.modalBackdrop}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div 
+              className={styles.modalContent}
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className={styles.closeButton} onClick={() => setSelectedProject(null)}>×</button>
+              <div className={styles.modalBody}>
+                <div className={styles.videoContainer}>
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${getYoutubeId(selectedProject.demo)}?autoplay=1`}
+                    frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen
+                  ></iframe>
                 </div>
-                <p className={styles.modalDescription}>{selectedProject.description}</p>
-                <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
-                  유튜브에서 보기 ↗
-                </a>
+                <div className={styles.projectInfo}>
+                  <h2>{selectedProject.title}</h2>
+                  <p>{selectedProject.description}</p>
+                  <div className={styles.modalTags}>
+                    {selectedProject.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, EffectCoverflow } from 'swiper/modules';
 import styles from './Projects.module.css';
 import portfolioData from '../../data/portfolio.json';
 import { motion, AnimatePresence } from 'framer-motion';
+
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
 
 interface Project {
   title: string;
@@ -27,39 +34,71 @@ const Projects = () => {
 
   return (
     <section id="projects" className={styles.projects}>
-      <div className={styles.projectsContainer}>
-        {projects.map((project, index) => (
-          <motion.div 
-            key={index} 
-            className={styles.projectSection}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-          >
-            <div className={styles.projectContent}>
-              <div className={styles.mediaSide}>
-                <div className={styles.imageWrapper} onClick={() => setSelectedProject(project)}>
-                  <img src={getYoutubeThumbnail(project.demo)} alt={project.title} className={styles.image} />
-                  <div className={styles.overlay}>
-                    <span className={styles.playIcon}>VIEW FILM</span>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.infoSide}>
-                <span className={styles.projectNumber}>0{index + 1}</span>
-                <h3 className={styles.projectTitle}>{project.title}</h3>
-                <div className={styles.tags}>
-                  {project.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
-                </div>
-                <button className={styles.detailsButton} onClick={() => setSelectedProject(project)}>
-                  VIEW DETAILS ⟶
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        ))}
+      <div className={styles.titleContainer}>
+        <motion.h2 
+          className={styles.title}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Selected Works
+        </motion.h2>
       </div>
 
+      <div className={styles.swiperWrapper}>
+        <Swiper
+          effect={'coverflow'}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={'auto'}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 150,
+            modifier: 2.5,
+            slideShadows: false,
+          }}
+          navigation={true}
+          modules={[EffectCoverflow, Navigation]}
+          className={styles.mySwiper}
+        >
+          {projects.map((project, index) => (
+            <SwiperSlide key={index} className={styles.swiperSlide}>
+              {({ isActive }) => (
+                <div 
+                  className={`${styles.card} ${isActive ? styles.activeCard : ''}`}
+                  onClick={() => isActive && setSelectedProject(project)}
+                >
+                  <div className={styles.imageWrapper}>
+                    <img src={getYoutubeThumbnail(project.demo)} alt={project.title} className={styles.image} />
+                    {isActive && (
+                      <div className={styles.overlay}>
+                        <span className={styles.playIcon}>VIEW DETAILS</span>
+                      </div>
+                    )}
+                  </div>
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div 
+                        className={styles.info}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                      >
+                        <h3 className={styles.projectTitle}>{project.title}</h3>
+                        <div className={styles.tags}>
+                          {project.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              )}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* 모달 상세 페이지 */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div 
@@ -71,9 +110,9 @@ const Projects = () => {
           >
             <motion.div 
               className={styles.modalContent}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
               <button className={styles.closeButton} onClick={() => setSelectedProject(null)}>×</button>

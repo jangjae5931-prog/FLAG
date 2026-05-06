@@ -1,11 +1,11 @@
 .header {
   position: sticky;
   top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background-color: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(15px);
   border-bottom: 1px solid var(--border-color);
   z-index: 1000;
-  padding: 1rem 0;
+  padding: 1.2rem 0;
 }
 
 .container {

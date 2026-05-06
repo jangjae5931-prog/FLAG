@@ -1,18 +1,39 @@
+import { useState } from 'react';
 import styles from './Projects.module.css';
 import portfolioData from '../../data/portfolio.json';
 
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  demo: string;
+}
+
 const Projects = () => {
   const { projects } = portfolioData;
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // 유튜브 URL에서 영상 ID를 추출하여 썸네일 주소를 반환하는 함수
-  const getYoutubeThumbnail = (url: string) => {
+  const getYoutubeId = (url: string) => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     const match = url.match(regExp);
-    const videoId = (match && match[7].length === 11) ? match[7] : null;
-    
+    return (match && match[7].length === 11) ? match[7] : null;
+  };
+
+  const getYoutubeThumbnail = (url: string) => {
+    const videoId = getYoutubeId(url);
     return videoId 
-      ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+      ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
       : 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
+  };
+
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+    document.body.style.overflow = 'hidden'; // 스크롤 방지
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    document.body.style.overflow = 'auto'; // 스크롤 복구
   };
 
   return (
@@ -20,7 +41,7 @@ const Projects = () => {
       <h2 className={styles.title}>Projects</h2>
       <div className={styles.projectGrid}>
         {projects.map((project, index) => (
-          <a key={index} href={project.demo} target="_blank" rel="noopener noreferrer" className={styles.projectCard}>
+          <div key={index} className={styles.projectCard} onClick={() => openModal(project)}>
             <div className={styles.imageWrapper}>
               <img 
                 src={getYoutubeThumbnail(project.demo)} 
@@ -31,7 +52,7 @@ const Projects = () => {
                 <div className={styles.playCircle}>
                   <span className={styles.playIcon}>▶</span>
                 </div>
-                <span className={styles.playText}>영상 보러가기</span>
+                <span className={styles.playText}>자세히 보기</span>
               </div>
             </div>
             <div className={styles.content}>
@@ -43,9 +64,39 @@ const Projects = () => {
                 ))}
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
+
+      {/* 모달 상세 페이지 */}
+      {selectedProject && (
+        <div className={styles.modalBackdrop} onClick={closeModal}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeButton} onClick={closeModal}>×</button>
+            <div className={styles.modalBody}>
+              <div className={styles.videoContainer}>
+                <iframe 
+                  src={`https://www.youtube.com/embed/${getYoutubeId(selectedProject.demo)}?autoplay=1`}
+                  frameBorder="0"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                  title={selectedProject.title}
+                ></iframe>
+              </div>
+              <div className={styles.projectInfo}>
+                <h2 className={styles.modalTitle}>{selectedProject.title}</h2>
+                <div className={styles.modalTags}>
+                  {selectedProject.tags.map((tag, i) => <span key={i} className={styles.tag}>{tag}</span>)}
+                </div>
+                <p className={styles.modalDescription}>{selectedProject.description}</p>
+                <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className={styles.externalLink}>
+                  유튜브에서 보기 ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

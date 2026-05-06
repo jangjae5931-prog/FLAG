@@ -9,9 +9,12 @@ const Projects = () => {
       <h2 className={styles.title}>Projects</h2>
       <div className={styles.projectGrid}>
         {projects.map((project, index) => (
-          <div key={index} className={styles.projectCard}>
+          <a key={index} href={project.demo} target="_blank" rel="noopener noreferrer" className={styles.projectCard}>
             <div className={styles.imageWrapper}>
               <img src={project.image} alt={project.title} className={styles.image} />
+              <div className={styles.overlay}>
+                <span className={styles.playButton}>▶ 영상 보기</span>
+              </div>
             </div>
             <div className={styles.content}>
               <h3 className={styles.projectTitle}>{project.title}</h3>
@@ -21,12 +24,8 @@ const Projects = () => {
                   <span key={tagIndex} className={styles.tag}>{tag}</span>
                 ))}
               </div>
-              <div className={styles.links}>
-                <a href={project.github} target="_blank" rel="noopener noreferrer" className={styles.link}>GitHub</a>
-                <a href={project.demo} target="_blank" rel="noopener noreferrer" className={styles.link}>Demo</a>
-              </div>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </section>

@@ -13,12 +13,12 @@ const Footer = () => {
           <p className={styles.email}>{profile.email}</p>
           <div className={styles.socialLinks}>
             <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href={profile.blog} target="_blank" rel="noopener noreferrer">Blog</a>
+            <a href={profile.blog} target="_blank" rel="noopener noreferrer">YouTube</a>
           </div>
         </div>
         <div className={styles.copyright}>
           <p>© {currentYear} {profile.name}. All rights reserved.</p>
+          <p className={styles.aiCredit}>Built with ❤️ & **Google Gemini AI**</p>
         </div>
       </div>
     </footer>

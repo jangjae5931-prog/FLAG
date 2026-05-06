@@ -19,21 +19,23 @@ const Projects = () => {
     return (match && match[7].length === 11) ? match[7] : null;
   };
 
+  // 유튜브 썸네일을 가져오되, 고화질이 없으면 기본 화질로 대체하는 로직
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
-    return videoId 
-      ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-      : 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
+    if (!videoId) return 'https://via.placeholder.com/640x360/111111/FFFFFF?text=Video+Link+Needed';
+    
+    // hqdefault는 거의 모든 영상에 존재하므로 가장 안전합니다.
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
   };
 
   const openModal = (project: Project) => {
     setSelectedProject(project);
-    document.body.style.overflow = 'hidden'; // 스크롤 방지
+    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedProject(null);
-    document.body.style.overflow = 'auto'; // 스크롤 복구
+    document.body.style.overflow = 'auto';
   };
 
   return (
@@ -46,7 +48,12 @@ const Projects = () => {
               <img 
                 src={getYoutubeThumbnail(project.demo)} 
                 alt={project.title} 
-                className={styles.image} 
+                className={styles.image}
+                onError={(e) => {
+                  // 만약 hqdefault마저 실패하면 기본 썸네일로 교체
+                  const videoId = getYoutubeId(project.demo);
+                  e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/0.jpg`;
+                }}
               />
               <div className={styles.overlay}>
                 <div className={styles.playCircle}>
@@ -68,7 +75,6 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* 모달 상세 페이지 */}
       {selectedProject && (
         <div className={styles.modalBackdrop} onClick={closeModal}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>

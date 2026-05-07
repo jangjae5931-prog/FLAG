@@ -1,43 +1,102 @@
 .skills {
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 80px;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
+  background-color: #0a0a0a;
   border-top: 1px solid var(--border-color);
 }
 
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .title {
-  font-size: 2.5rem;
-  margin-bottom: 3rem;
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 4rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #ffffff !important; /* 무조건 흰색 글자 */
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  position: relative;
 }
 
-.skillList {
+.title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent-color);
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem 4rem;
+}
+
+.skillItem {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem;
+  flex-direction: column;
+  gap: 0.8rem;
 }
 
-.skillTag {
-  background-color: #1a1a1a !important; /* 배경을 어둡게 강제 고정 */
-  padding: 0.8rem 1.6rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: 1px solid #333 !important;
-  color: #cccccc !important;
-  transition: all 0.3s ease;
-  cursor: default;
+.skillHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.skillTag:hover {
-  border-color: var(--accent-color) !important;
-  color: #ffffff !important;
-  background-color: var(--accent-color) !important;
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(255, 62, 0, 0.4);
+.icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+.skillName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  flex: 1;
+}
+
+.skillLevel {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--accent-color);
+}
+
+.barContainer {
+  width: 100%;
+  height: 8px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #222;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), #ff7b00);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(255, 62, 0, 0.4);
+}
+
+@media (max-width: 1024px) {
+  .skills { padding: 0 40px; }
+  .title { font-size: 2.5rem; }
+  .skillGrid { grid-template-columns: 1fr; gap: 1.5rem; }
 }

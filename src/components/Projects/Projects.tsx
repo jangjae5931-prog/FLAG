@@ -105,7 +105,7 @@ const Projects = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               )}
             </SwiperSlide>
           ))}

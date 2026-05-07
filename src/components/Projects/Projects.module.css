@@ -1,12 +1,10 @@
 .projects {
   background-color: #0a0a0a;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  padding: 80px 0;
   overflow: hidden;
 }
 

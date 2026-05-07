@@ -69,7 +69,18 @@ const Projects = () => {
                   onClick={() => isActive && setSelectedProject(project)}
                 >
                   <div className={styles.imageWrapper}>
-                    <img src={getYoutubeThumbnail(project.demo)} alt={project.title} className={styles.image} />
+                    <img 
+                      src={getYoutubeThumbnail(project.demo)} 
+                      alt={project.title} 
+                      className={styles.image} 
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        if (!target.src.includes('hqdefault.jpg')) {
+                          const videoId = getYoutubeId(project.demo);
+                          target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                        }
+                      }}
+                    />
                     {isActive && (
                       <div className={styles.overlay}>
                         <span className={styles.playIcon}>VIEW DETAILS</span>

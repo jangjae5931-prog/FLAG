@@ -10,15 +10,15 @@
     "blog": "https://www.youtube.com/@TAKE17-o1u"
   },
   "skills": [
-    "Adobe Premiere Pro",
-    "Adobe After Effects",
-    "Adobe Illustrator",
-    "Adobe Photoshop",
-    "Blender",
-    "Motion Graphics",
-    "Video Editing",
-    "AI Collaboration",
-    "Prompt Engineering"
+    { "name": "Adobe Premiere Pro", "level": 9, "icon": "SiAdobepremierepro" },
+    { "name": "Adobe After Effects", "level": 9, "icon": "SiAdobeaftereffects" },
+    { "name": "Adobe Illustrator", "level": 8, "icon": "SiAdobeillustrator" },
+    { "name": "Adobe Photoshop", "level": 8, "icon": "SiAdobephotoshop" },
+    { "name": "Blender", "level": 7, "icon": "SiBlender" },
+    { "name": "Motion Graphics", "level": 9, "icon": "MdMovieFilter" },
+    { "name": "Video Editing", "level": 10, "icon": "MdContentCut" },
+    { "name": "AI Collaboration", "level": 9, "icon": "SiOpenai" },
+    { "name": "Prompt Engineering", "level": 8, "icon": "MdTerminal" }
   ],
   "projects": [
     {

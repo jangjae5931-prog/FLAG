@@ -12,7 +12,6 @@ const Footer = () => {
           <h2 className={styles.title}>Contact</h2>
           <p className={styles.email}>{profile.email}</p>
           <div className={styles.socialLinks}>
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
             <a href={profile.blog} target="_blank" rel="noopener noreferrer">YouTube</a>
           </div>
         </div>

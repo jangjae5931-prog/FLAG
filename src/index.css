@@ -15,10 +15,28 @@
   cursor: none !important; /* 커스텀 커서를 위해 기본 커서 숨김 */
 }
 
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 html {
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* 헤더 높이만큼 여백 확보 */
 }
 
 html, body {
@@ -27,10 +45,9 @@ html, body {
   font-family: var(--font-family);
   line-height: 1.6;
   overflow-x: hidden;
-  height: 100%;
 }
 
-/* 풀페이지 스냅 설정 제거 (html로 이동) */
+/* 기존 스냅 설정 제거 */
 main {
   width: 100%;
 }

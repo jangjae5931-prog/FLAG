@@ -51,11 +51,12 @@ const Projects = () => {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
+          speed={1000} // 전환 속도를 늦춰 더 부드럽게
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 150,
-            modifier: 2.5,
+            depth: 100,
+            modifier: 2,
             slideShadows: false,
           }}
           navigation={true}
@@ -65,9 +66,17 @@ const Projects = () => {
           {projects.map((project, index) => (
             <SwiperSlide key={index} className={styles.swiperSlide}>
               {({ isActive }) => (
-                <div 
+                <motion.div 
                   className={`${styles.card} ${isActive ? styles.activeCard : ''}`}
                   onClick={() => isActive && setSelectedProject(project)}
+                  animate={isActive ? {
+                    y: [0, -10, 0], // 활성 카드만 말랑하게 위아래로 움직임
+                  } : { y: 0 }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
                   <div className={styles.imageWrapper}>
                     <img 

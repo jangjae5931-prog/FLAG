@@ -27,17 +27,13 @@ const Experience = () => {
             <motion.div 
               key={index} 
               className={styles.item}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
             >
-              <div className={styles.periodColumn}>
-                <span className={styles.period}>{item.period}</span>
-              </div>
-              <div className={styles.contentColumn}>
-                <h4 className={styles.itemTitle}>{item.title}</h4>
-                <p className={styles.description}>{item.description}</p>
-              </div>
+              <span className={styles.period}>{item.period}</span>
+              <h4 className={styles.itemTitle}>{item.title}</h4>
+              <p className={styles.description}>{item.description}</p>
             </motion.div>
           ))}
         </div>

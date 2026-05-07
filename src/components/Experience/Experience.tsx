@@ -23,7 +23,7 @@ const Experience = () => {
   // 대구읍성 예고편(6번)을 제외한 나머지 데이터 필터링 및 폴더 매칭
   const history = (portfolioData.history as HistoryItem[])
     .filter(item => item.title !== '대구읍성예고편 제작')
-    .map((item, index) => {
+    .map((item) => {
       // 폴더 매핑 (1~12번 중 6번 제외)
       const folderMap: { [key: string]: string } = {
         "경상감영공원": "1_경상감영공원",

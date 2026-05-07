@@ -15,19 +15,24 @@
   cursor: none !important; /* 커스텀 커서를 위해 기본 커서 숨김 */
 }
 
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* 헤더 높이만큼 여백 확보 */
+}
+
 html, body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family);
   line-height: 1.6;
   overflow-x: hidden;
+  height: 100%;
 }
 
-/* 풀페이지 스냅 설정 */
+/* 풀페이지 스냅 설정 제거 (html로 이동) */
 main {
-  height: 100vh;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  width: 100%;
 }
 
 a {

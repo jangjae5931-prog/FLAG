@@ -29,8 +29,8 @@ const Projects = () => {
 
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
-    // hqdefault는 모든 유튜브 영상에서 제공하는 가장 안정적인 고화질 썸네일입니다.
-    return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
+    // i.ytimg.com은 유튜브의 공식 썸네일 CDN으로 더 안정적입니다.
+    return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '';
   };
 
   return (

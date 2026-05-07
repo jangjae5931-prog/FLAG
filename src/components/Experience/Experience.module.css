@@ -28,50 +28,63 @@
 
 .listContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
 .listItem {
   background: #111;
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
+  padding: 2rem;
+  border-radius: 16px;
   border: 1px solid #222;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  min-height: 180px;
 }
 
 .listItem:hover {
   border-color: var(--accent-color);
-  background: #161616;
-  transform: translateX(10px);
+  background: #1a1a1a;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 .itemPeriod {
-  font-size: 0.85rem;
-  color: var(--secondary-text);
-  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--accent-color);
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
 }
 
 .itemTitle {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #fff;
+  line-height: 1.4;
+  margin: 0;
+  word-break: keep-all;
 }
 
 .viewMore {
-  font-size: 0.75rem;
-  color: var(--accent-color);
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  font-size: 0.7rem;
+  color: var(--secondary-text);
   font-weight: 700;
   text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  opacity: 0.5;
+  transition: all 0.3s ease;
 }
 
 .listItem:hover .viewMore {
+  color: var(--accent-color);
   opacity: 1;
 }
 

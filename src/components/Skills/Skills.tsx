@@ -1,15 +1,7 @@
+import React from 'react';
 import styles from './Skills.module.css';
 import portfolioData from '../../data/portfolio.json';
 import { motion } from 'framer-motion';
-import { 
-  SiAdobepremierepro, 
-  SiAdobeaftereffects, 
-  SiAdobeillustrator, 
-  SiAdobephotoshop, 
-  SiBlender,
-  SiOpenai 
-} from 'react-icons/si';
-import { MdMovieFilter, MdContentCut, MdTerminal } from 'react-icons/md';
 
 interface Skill {
   name: string;
@@ -17,16 +9,23 @@ interface Skill {
   icon: string;
 }
 
-const iconMap: { [key: string]: JSX.Element } = {
-  SiAdobepremierepro: <SiAdobepremierepro style={{ color: '#9999FF' }} />,
-  SiAdobeaftereffects: <SiAdobeaftereffects style={{ color: '#9999FF' }} />,
-  SiAdobeillustrator: <SiAdobeillustrator style={{ color: '#FF9A00' }} />,
-  SiAdobephotoshop: <SiAdobephotoshop style={{ color: '#31A8FF' }} />,
-  SiBlender: <SiBlender style={{ color: '#E87D0D' }} />,
-  SiOpenai: <SiOpenai style={{ color: '#74aa9c' }} />,
-  MdMovieFilter: <MdMovieFilter style={{ color: '#ff3e00' }} />,
-  MdContentCut: <MdContentCut style={{ color: '#ff3e00' }} />,
-  MdTerminal: <MdTerminal style={{ color: '#fff' }} />
+const getIconUrl = (iconKey: string) => {
+  // Adobe 및 주요 브랜드 아이콘을 Simple Icons CDN에서 가져옵니다.
+  const brandMap: { [key: string]: string } = {
+    SiAdobepremierepro: 'adobepremierepro',
+    SiAdobeaftereffects: 'adobeaftereffects',
+    SiAdobeillustrator: 'adobeillustrator',
+    SiAdobephotoshop: 'adobephotoshop',
+    SiBlender: 'blender',
+    SiOpenai: 'openai',
+    MdMovieFilter: 'video', // 대체 아이콘
+    MdContentCut: 'clippath', // 대체 아이콘
+    MdTerminal: 'gnumeterminal' // 대체 아이콘
+  };
+  
+  const slug = brandMap[iconKey] || 'code';
+  // 브랜드 고유 컬러를 적용하거나 기본 흰색으로 설정
+  return `https://cdn.simpleicons.org/${slug}/ffffff`;
 };
 
 const Skills = () => {
@@ -53,7 +52,13 @@ const Skills = () => {
               transition={{ delay: index * 0.1 }}
             >
               <div className={styles.skillHeader}>
-                <span className={styles.icon}>{iconMap[skill.icon] || <span>?</span>}</span>
+                <span className={styles.icon}>
+                  <img 
+                    src={getIconUrl(skill.icon)} 
+                    alt={skill.name} 
+                    style={{ width: '24px', height: '24px' }} 
+                  />
+                </span>
                 <span className={styles.skillName}>{skill.name}</span>
                 <span className={styles.skillLevel}>{skill.level}/10</span>
               </div>

@@ -19,7 +19,7 @@ const Experience = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
         >
-          Work History
+          Project History
         </motion.h2>
 
         <div className={styles.timeline}>

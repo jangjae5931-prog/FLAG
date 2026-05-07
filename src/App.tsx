@@ -14,8 +14,8 @@ function App() {
         <Hero />
         <Skills />
         <Projects />
+        <Footer />
       </main>
-      <Footer />
     </>
   );
 }

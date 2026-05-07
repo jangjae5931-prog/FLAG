@@ -29,7 +29,8 @@ const Projects = () => {
 
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
-    return videoId ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg` : '';
+    // hqdefault는 모든 유튜브 영상에서 제공하는 가장 안정적인 고화질 썸네일입니다.
+    return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '';
   };
 
   return (
@@ -73,13 +74,6 @@ const Projects = () => {
                       src={getYoutubeThumbnail(project.demo)} 
                       alt={project.title} 
                       className={styles.image} 
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        if (!target.src.includes('hqdefault.jpg')) {
-                          const videoId = getYoutubeId(project.demo);
-                          target.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-                        }
-                      }}
                     />
                     {isActive && (
                       <div className={styles.overlay}>

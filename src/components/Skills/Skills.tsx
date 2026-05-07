@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './Skills.module.css';
 import portfolioData from '../../data/portfolio.json';
 import { motion } from 'framer-motion';

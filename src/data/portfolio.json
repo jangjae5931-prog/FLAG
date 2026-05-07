@@ -10,15 +10,15 @@
     "blog": "https://www.youtube.com/@TAKE17-o1u"
   },
   "skills": [
-    { "name": "Adobe Premiere Pro", "level": 9, "icon": "SiAdobepremierepro" },
-    { "name": "Adobe After Effects", "level": 9, "icon": "SiAdobeaftereffects" },
-    { "name": "Adobe Illustrator", "level": 8, "icon": "SiAdobeillustrator" },
-    { "name": "Adobe Photoshop", "level": 8, "icon": "SiAdobephotoshop" },
-    { "name": "Blender", "level": 7, "icon": "SiBlender" },
-    { "name": "Motion Graphics", "level": 9, "icon": "MdMovieFilter" },
-    { "name": "Video Editing", "level": 10, "icon": "MdContentCut" },
-    { "name": "AI Collaboration", "level": 9, "icon": "SiOpenai" },
-    { "name": "Prompt Engineering", "level": 8, "icon": "MdTerminal" }
+    { "name": "Adobe Premiere Pro", "level": 9, "icon": "Pr.png" },
+    { "name": "Adobe After Effects", "level": 9, "icon": "Ae.png" },
+    { "name": "Adobe Illustrator", "level": 8, "icon": "Ai.png" },
+    { "name": "Adobe Photoshop", "level": 8, "icon": "ps.png" },
+    { "name": "Blender", "level": 7, "icon": "blender.png" },
+    { "name": "Motion Graphics", "level": 9, "icon": "MG.png" },
+    { "name": "Video Editing", "level": 10, "icon": "VE.png" },
+    { "name": "AI Collaboration", "level": 9, "icon": "gpt.png" },
+    { "name": "Prompt Engineering", "level": 8, "icon": "PE.png" }
   ],
   "projects": [
     {

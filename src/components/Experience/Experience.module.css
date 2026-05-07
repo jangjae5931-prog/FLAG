@@ -190,9 +190,33 @@
   font-size: 1rem;
 }
 
-@media (max-width: 1024px) {
-  .listContainer { grid-template-columns: 1fr; }
-  .modalBody { flex-direction: column; height: auto; }
-  .sliderContainer { height: 400px; }
+@media (max-width: 1200px) {
+  .listContainer { grid-template-columns: repeat(2, 1fr); }
+  .title { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .experience { 
+    height: auto; 
+    min-height: 100vh;
+    padding: 80px 20px; 
+    overflow-y: auto;
+  }
+  .listContainer { 
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+  }
+  .listItem {
+    min-height: auto;
+    padding: 1.5rem;
+  }
+  .itemTitle {
+    font-size: 1.1rem;
+  }
+  .modalBody { 
+    flex-direction: column; 
+    height: auto; 
+  }
+  .sliderContainer { height: 300px; }
   .infoContainer { padding: 30px; }
 }

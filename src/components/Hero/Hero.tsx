@@ -9,7 +9,7 @@ const Hero = () => {
     <section id="hero" className={styles.hero}>
       <div className={styles.videoBackground}>
         <iframe 
-          src="https://www.youtube.com/embed/pD5ihmCksaU?autoplay=1&mute=1&loop=1&playlist=pD5ihmCksaU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1"
+          src="https://www.youtube-nocookie.com/embed/pD5ihmCksaU?autoplay=1&mute=1&loop=1&playlist=pD5ihmCksaU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&autohide=1"
           frameBorder="0"
           allow="autoplay; encrypted-media"
           className={styles.videoFrame}

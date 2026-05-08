@@ -7,15 +7,35 @@ const Hero = () => {
 
   return (
     <section id="hero" className={styles.hero}>
-      <div className={styles.videoBackground}>
-        <iframe 
-          src="https://www.youtube-nocookie.com/embed/pD5ihmCksaU?autoplay=1&mute=1&loop=1&playlist=pD5ihmCksaU&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&autohide=1&playsinline=1"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          className={styles.videoFrame}
-          title="Background Video"
-        ></iframe>
-        <div className={styles.overlay}></div>
+      <div className={styles.gradientBackground}>
+        <motion.div 
+          className={`${styles.blob} ${styles.purple}`}
+          animate={{
+            x: [0, 100, -50, 0],
+            y: [0, -50, 100, 0],
+            scale: [1, 1.2, 0.8, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className={`${styles.blob} ${styles.yellow}`}
+          animate={{
+            x: [0, -120, 80, 0],
+            y: [0, 100, -120, 0],
+            scale: [1, 0.9, 1.3, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className={`${styles.blob} ${styles.teal}`}
+          animate={{
+            x: [0, 80, -100, 0],
+            y: [0, -120, 50, 0],
+            scale: [1, 1.1, 0.9, 1],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
+        />
+        <div className={styles.glassOverlay}></div>
       </div>
 
       <div className={styles.content}>

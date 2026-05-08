@@ -12,55 +12,55 @@
   margin: 0;
 }
 
-.videoBackground {
+.gradientBackground {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 0;
-  background-color: #000;
+  background-color: #0a0a0a;
   overflow: hidden;
-  /* 컨테이너 자체는 이벤트를 막지 않음 (자식인 overlay가 가로채야 함) */
-  pointer-events: auto; 
 }
 
-.videoFrame {
-  width: 150vw;
-  height: 84.37vw;
-  min-height: 150vh;
-  min-width: 266.66vh;
+.blob {
   position: absolute;
-  top: 50%;
-  /* 
-     중앙을 살짝 비껴나가게 설정 (48%) 
-     유튜브의 '정중앙 버튼'이 화면의 '정중앙'과 일치하지 않게 하여 
-     물리적으로 가려질 확률을 극대화함
-  */
-  left: 48%; 
-  transform: translate(-50%, -50%);
-  opacity: 0.4;
-  z-index: 0;
-  /* 영상 자체는 절대 클릭되지 않아야 함 */
-  pointer-events: none;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.6;
+  mix-blend-mode: screen;
 }
 
-.overlay {
+.purple {
+  background: radial-gradient(circle, #8a2be2 0%, transparent 70%);
+  top: -150px;
+  left: -150px;
+}
+
+.yellow {
+  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+  bottom: -200px;
+  right: -100px;
+}
+
+.teal {
+  background: radial-gradient(circle, #00ced1 0%, transparent 70%);
+  top: 25%;
+  right: 5%;
+}
+
+.glassOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* 
-     매우 중요: pointer-events를 auto로 설정하여 
-     모든 마우스 이벤트를 이 레이어에서 소멸시킴. 
-     유튜브 플레이어는 마우스의 존재를 전혀 눈치채지 못하게 됨.
-  */
-  pointer-events: auto;
-  z-index: 2; /* 영상(0)보다 위에 배치 */
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  background: linear-gradient(to bottom, rgba(10,10,10,0.2) 0%, rgba(10,10,10,0.9) 100%);
+  background: rgba(10, 10, 10, 0.25);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  z-index: 1;
 }
 
 .content {

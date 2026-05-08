@@ -11,47 +11,47 @@ const Hero = () => {
         <motion.div 
           className={`${styles.blob} ${styles.purple}`}
           animate={{
-            x: [0, 200, -150, 100, 0],
-            y: [0, -100, 250, -150, 0],
-            scale: [1, 1.4, 0.9, 1.2, 1],
+            x: [0, 400, -300, 200, 0],
+            y: [0, -200, 400, -300, 0],
+            scale: [1, 1.8, 0.6, 1.3, 1],
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
           className={`${styles.blob} ${styles.yellow}`}
           animate={{
-            x: [0, -250, 180, -100, 0],
-            y: [0, 200, -120, 250, 0],
-            scale: [1, 0.8, 1.3, 0.9, 1],
+            x: [0, -450, 300, -200, 0],
+            y: [0, 350, -250, 400, 0],
+            scale: [1, 0.5, 1.5, 0.7, 1],
           }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
           className={`${styles.blob} ${styles.teal}`}
           animate={{
-            x: [0, 180, -200, 150, 0],
-            y: [0, -200, 100, -250, 0],
-            scale: [1, 1.2, 0.8, 1.1, 1],
+            x: [0, 300, -400, 250, 0],
+            y: [0, -350, 200, -450, 0],
+            scale: [1, 1.4, 0.7, 1.2, 1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
           className={`${styles.blob} ${styles.pink}`}
           animate={{
-            x: [0, -150, 200, -80, 0],
-            y: [0, 150, -250, 100, 0],
-            scale: [1, 1.3, 0.9, 1.4, 1],
+            x: [0, -300, 450, -150, 0],
+            y: [0, 250, -400, 300, 0],
+            scale: [1, 1.6, 0.5, 1.4, 1],
           }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div 
           className={`${styles.blob} ${styles.blue}`}
           animate={{
-            x: [0, 250, -120, 180, 0],
-            y: [0, 180, -150, 200, 0],
-            scale: [1, 0.9, 1.2, 0.8, 1],
+            x: [0, 500, -250, 350, 0],
+            y: [0, 300, -350, 450, 0],
+            scale: [1, 0.7, 1.7, 0.9, 1],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         />
         <div className={styles.glassOverlay}></div>
       </div>

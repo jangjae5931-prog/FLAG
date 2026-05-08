@@ -19,24 +19,23 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  pointer-events: none; /* 컨테이너 차원에서 모든 클릭 차단 */
-  background-color: #0a0a0a; /* 로딩 전 검은 배경 */
-  overflow: hidden;
+  pointer-events: none;
+  background-color: #0a0a0a;
+  overflow: hidden; /* 영역 밖으로 나간 UI를 완전히 잘라냄 */
 }
 
 .videoFrame {
-  width: 100vw;
-  height: 56.25vw;
-  min-height: 100vh;
-  min-width: 177.77vh;
+  /* 화면을 140% 크기로 키워서 상하좌우 UI 영역을 가시 영역 밖으로 밀어냄 */
+  width: 140vw;
+  height: 78.75vw; /* 16:9 비율 유지 */
+  min-height: 140vh;
+  min-width: 248.88vh;
   position: absolute;
   top: 50%;
   left: 50%;
-  /* 스케일을 1.2로 조정하고 블러와 함께 사용하여 UI 은폐 */
-  transform: translate(-50%, -50%) scale(1.2); 
-  opacity: 0.4;
+  transform: translate(-50%, -50%); 
+  opacity: 0.45;
   z-index: 0;
-  pointer-events: none;
 }
 
 .overlay {
@@ -45,10 +44,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /* 백드롭 필터 블러로 유튜브 UI의 날카로운 선들을 모두 뭉개버림 */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: linear-gradient(to bottom, rgba(10,10,10,0.4), rgba(10,10,10,0.9));
+  /* 
+     로딩 시 나타나는 자잘한 UI의 잔상을 완전히 뭉개기 위해 블러 유지 
+     및 시네마틱 그라데이션 적용
+  */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3), rgba(10,10,10,0.95));
   z-index: 1;
 }
 

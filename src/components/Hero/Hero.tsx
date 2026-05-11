@@ -15,14 +15,28 @@ const Hero = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+return (
+  <section id="hero" className={styles.hero}>
+    <div className={styles.gradientBackground}>
+      {/* 영상 소스가 있다면 아래 video 태그의 주석을 해제하고 src를 입력하세요 */}
+      {/* 
+      <video 
+        autoPlay 
+        muted 
+        loop 
+        playsInline 
+        className={styles.videoBackground}
+        poster="./assets/hero-poster.png" // 영상 로드 전 보여줄 이미지
+      >
+        <source src="./assets/hero-bg.mp4" type="video/mp4" />
+      </video> 
+      */}
 
-  return (
-    <section id="hero" className={styles.hero}>
-      <div className={styles.gradientBackground}>
-        {!isMobile && (
-          <>
-            <motion.div 
-              className={`${styles.blob} ${styles.purple}`}
+      {!isMobile && (
+        <>
+          <motion.div 
+            className={`${styles.blob} ${styles.purple}`}
+...
               animate={{
                 x: [0, 400, -300, 200, 0],
                 y: [0, -200, 400, -300, 0],

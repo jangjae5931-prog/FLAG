@@ -1,11 +1,17 @@
 .header {
   position: sticky;
   top: 0;
-  background-color: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(10, 10, 10, 0.9);
   z-index: 1000;
   padding: 1.2rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media (min-width: 1025px) {
+  .header {
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+  }
 }
 
 .container {

@@ -32,7 +32,8 @@
   opacity: 0.7;
   mix-blend-mode: screen;
   will-change: transform;
-  transform: translateZ(0);
+  transform: translate3d(0, 0, 0); /* GPU 가속 확실히 보장 */
+  backface-visibility: hidden;
 }
 
 .purple {
@@ -146,9 +147,11 @@
   .name { font-size: 3rem; }
   .role { font-size: 1rem; }
   .blob {
-    width: 350px;
-    height: 350px;
-    filter: blur(25px);
+    width: 300px;
+    height: 300px;
+    filter: none; /* 모바일에서 블러 완전 제거 (성능 최우선) */
+    mix-blend-mode: normal; /* 블렌드 모드 제거 */
+    opacity: 0.2; /* 투명도를 낮추어 은은하게 */
   }
   .glassOverlay {
     backdrop-filter: none;

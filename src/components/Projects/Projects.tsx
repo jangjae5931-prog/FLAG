@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, EffectCoverflow } from 'swiper/modules';
 import styles from './Projects.module.css';
@@ -20,6 +20,16 @@ interface Project {
 const Projects = () => {
   const { projects } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const getYoutubeId = (url: string) => {
     const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -29,7 +39,6 @@ const Projects = () => {
 
   const getYoutubeThumbnail = (url: string) => {
     const videoId = getYoutubeId(url);
-    // i.ytimg.com은 유튜브의 공식 썸네일 CDN으로 더 안정적입니다.
     return videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '';
   };
 
@@ -38,7 +47,7 @@ const Projects = () => {
       <div className={styles.titleContainer}>
         <motion.h2 
           className={styles.title}
-          initial={{ opacity: 0, y: 20 }}
+          initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
         >
           Selected Works
@@ -47,11 +56,11 @@ const Projects = () => {
 
       <div className={styles.swiperWrapper}>
         <Swiper
-          effect={'coverflow'}
+          effect={isMobile ? 'slide' : 'coverflow'}
           grabCursor={true}
           centeredSlides={true}
           slidesPerView={'auto'}
-          speed={1000} // 전환 속도를 늦춰 더 부드럽게
+          speed={isMobile ? 300 : 1000}
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
@@ -59,7 +68,7 @@ const Projects = () => {
             modifier: 2,
             slideShadows: false,
           }}
-          navigation={true}
+          navigation={!isMobile}
           modules={[EffectCoverflow, Navigation]}
           className={styles.mySwiper}
         >
@@ -69,8 +78,8 @@ const Projects = () => {
                 <motion.div 
                   className={`${styles.card} ${isActive ? styles.activeCard : ''}`}
                   onClick={() => isActive && setSelectedProject(project)}
-                  animate={isActive ? {
-                    y: [0, -10, 0], // 활성 카드만 말랑하게 위아래로 움직임
+                  animate={(!isMobile && isActive) ? {
+                    y: [0, -10, 0],
                   } : { y: 0 }}
                   transition={{
                     duration: 3,
@@ -86,7 +95,7 @@ const Projects = () => {
                     />
                     {isActive && (
                       <div className={styles.overlay}>
-                        <span className={styles.playIcon}>VIEW DETAILS</span>
+                        <span className={styles.playIcon}>{isMobile ? 'TAP TO VIEW' : 'VIEW DETAILS'}</span>
                       </div>
                     )}
                   </div>
@@ -94,7 +103,7 @@ const Projects = () => {
                     {isActive && (
                       <motion.div 
                         className={styles.info}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={isMobile ? { opacity: 1 } : { opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                       >

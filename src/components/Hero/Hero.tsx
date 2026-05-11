@@ -1,20 +1,9 @@
-import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
 import portfolioData from '../../data/portfolio.json';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
   const { profile } = portfolioData;
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <section id="hero" className={styles.hero}>

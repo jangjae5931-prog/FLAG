@@ -19,41 +19,26 @@ const Hero = () => {
   return (
     <section id="hero" className={styles.hero}>
       <div className={styles.gradientBackground}>
-        <motion.div 
-          className={`${styles.blob} ${styles.purple}`}
-          animate={isMobile ? {
-            x: [0, 50, -50, 0],
-            y: [0, -30, 30, 0],
-          } : {
-            x: [0, 400, -300, 200, 0],
-            y: [0, -200, 400, -300, 0],
-            scale: [1, 1.8, 0.6, 1.3, 1],
-          }}
-          transition={{ 
-            duration: isMobile ? 15 : 10, 
-            repeat: Infinity, 
-            ease: "linear" // easeInOut보다 연산량이 적은 linear 사용
-          }}
-        />
-        <motion.div 
-          className={`${styles.blob} ${styles.yellow}`}
-          animate={isMobile ? {
-            x: [0, -60, 60, 0],
-            y: [0, 40, -40, 0],
-          } : {
-            x: [0, -450, 300, -200, 0],
-            y: [0, 350, -250, 400, 0],
-            scale: [1, 0.5, 1.5, 0.7, 1],
-          }}
-          transition={{ 
-            duration: isMobile ? 18 : 12, 
-            repeat: Infinity, 
-            ease: "linear" 
-          }}
-        />
-        
         {!isMobile && (
           <>
+            <motion.div 
+              className={`${styles.blob} ${styles.purple}`}
+              animate={{
+                x: [0, 400, -300, 200, 0],
+                y: [0, -200, 400, -300, 0],
+                scale: [1, 1.8, 0.6, 1.3, 1],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className={`${styles.blob} ${styles.yellow}`}
+              animate={{
+                x: [0, -450, 300, -200, 0],
+                y: [0, 350, -250, 400, 0],
+                scale: [1, 0.5, 1.5, 0.7, 1],
+              }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+            />
             <motion.div 
               className={`${styles.blob} ${styles.teal}`}
               animate={{

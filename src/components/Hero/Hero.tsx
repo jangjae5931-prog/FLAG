@@ -15,73 +15,21 @@ const Hero = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-return (
-  <section id="hero" className={styles.hero}>
-    <div className={styles.gradientBackground}>
-      {/* 영상 소스가 있다면 아래 video 태그의 주석을 해제하고 src를 입력하세요 */}
-      {/* 
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
-        className={styles.videoBackground}
-        poster="./assets/hero-poster.png" // 영상 로드 전 보여줄 이미지
-      >
-        <source src="./assets/hero-bg.mp4" type="video/mp4" />
-      </video> 
-      */}
 
-      {!isMobile && (
-        <>
-          <motion.div 
-            className={`${styles.blob} ${styles.purple}`}
-...
-              animate={{
-                x: [0, 400, -300, 200, 0],
-                y: [0, -200, 400, -300, 0],
-                scale: [1, 1.8, 0.6, 1.3, 1],
-              }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className={`${styles.blob} ${styles.yellow}`}
-              animate={{
-                x: [0, -450, 300, -200, 0],
-                y: [0, 350, -250, 400, 0],
-                scale: [1, 0.5, 1.5, 0.7, 1],
-              }}
-              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className={`${styles.blob} ${styles.teal}`}
-              animate={{
-                x: [0, 300, -400, 250, 0],
-                y: [0, -350, 200, -450, 0],
-                scale: [1, 1.4, 0.7, 1.2, 1],
-              }}
-              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className={`${styles.blob} ${styles.pink}`}
-              animate={{
-                x: [0, -300, 450, -150, 0],
-                y: [0, 250, -400, 300, 0],
-                scale: [1, 1.6, 0.5, 1.4, 1],
-              }}
-              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <motion.div 
-              className={`${styles.blob} ${styles.blue}`}
-              animate={{
-                x: [0, 500, -250, 350, 0],
-                y: [0, 300, -350, 450, 0],
-                scale: [1, 0.7, 1.7, 0.9, 1],
-              }}
-              transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </>
-        )}
+  return (
+    <section id="hero" className={styles.hero}>
+      <div className={styles.gradientBackground}>
+        {/* 영상 배경 적용 (렉 해결 핵심) */}
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className={styles.videoBackground}
+        >
+          <source src="./assets/hero-bg.mp4" type="video/mp4" />
+        </video>
+
         <div className={styles.glassOverlay}></div>
       </div>
 

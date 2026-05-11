@@ -6,16 +6,16 @@
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  top: 0;
+  left: 0;
   mix-blend-mode: difference; /* 배경색에 따라 반전되는 효과 */
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border 0.3s ease;
+  will-change: transform;
 }
 
 .pointer {
   width: 50px;
   height: 50px;
-  background-color: rgba(255, 62, 0, 0.3);
-  border: 2px solid var(--accent-color);
 }
 
 @media (max-width: 1024px) {

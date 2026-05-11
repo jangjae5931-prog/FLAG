@@ -31,6 +31,8 @@
   filter: blur(80px); /* 블러를 낮추어 형체 부각 */
   opacity: 0.7;
   mix-blend-mode: screen;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .purple {
@@ -133,9 +135,24 @@
 @media (max-width: 1024px) {
   .name { font-size: 5rem; }
   .hero { padding: 0 40px; }
+  .blob {
+    width: 600px;
+    height: 600px;
+    filter: blur(40px);
+  }
 }
 
 @media (max-width: 600px) {
   .name { font-size: 3rem; }
   .role { font-size: 1rem; }
+  .blob {
+    width: 350px;
+    height: 350px;
+    filter: blur(25px);
+  }
+  .glassOverlay {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(10, 10, 10, 0.4);
+  }
 }

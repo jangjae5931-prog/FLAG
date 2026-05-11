@@ -1,9 +1,20 @@
+import { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
 import portfolioData from '../../data/portfolio.json';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
   const { profile } = portfolioData;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="hero" className={styles.hero}>
@@ -26,33 +37,38 @@ const Hero = () => {
           }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div 
-          className={`${styles.blob} ${styles.teal}`}
-          animate={{
-            x: [0, 300, -400, 250, 0],
-            y: [0, -350, 200, -450, 0],
-            scale: [1, 1.4, 0.7, 1.2, 1],
-          }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className={`${styles.blob} ${styles.pink}`}
-          animate={{
-            x: [0, -300, 450, -150, 0],
-            y: [0, 250, -400, 300, 0],
-            scale: [1, 1.6, 0.5, 1.4, 1],
-          }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div 
-          className={`${styles.blob} ${styles.blue}`}
-          animate={{
-            x: [0, 500, -250, 350, 0],
-            y: [0, 300, -350, 450, 0],
-            scale: [1, 0.7, 1.7, 0.9, 1],
-          }}
-          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
-        />
+        
+        {!isMobile && (
+          <>
+            <motion.div 
+              className={`${styles.blob} ${styles.teal}`}
+              animate={{
+                x: [0, 300, -400, 250, 0],
+                y: [0, -350, 200, -450, 0],
+                scale: [1, 1.4, 0.7, 1.2, 1],
+              }}
+              transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className={`${styles.blob} ${styles.pink}`}
+              animate={{
+                x: [0, -300, 450, -150, 0],
+                y: [0, 250, -400, 300, 0],
+                scale: [1, 1.6, 0.5, 1.4, 1],
+              }}
+              transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className={`${styles.blob} ${styles.blue}`}
+              animate={{
+                x: [0, 500, -250, 350, 0],
+                y: [0, 300, -350, 450, 0],
+                scale: [1, 0.7, 1.7, 0.9, 1],
+              }}
+              transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </>
+        )}
         <div className={styles.glassOverlay}></div>
       </div>
 
